@@ -1,4 +1,4 @@
-name: "async-tcp-proxy"
+name: "async-tcp-proxy_swap_crc"
 description: "Proxy to access a tcp server using single connection. Allows multiple tcp client connections of any protocol like Modbus"
 version: "0.0.8"
 slug: "async_tcp_proxy"
@@ -8,14 +8,14 @@ arch:
   - armhf
   - armv7
   - i386
-url: "https://github.com/cosote/ha-async-tcp-proxy"
+url: "https://github.com/Turntable67/ha-async-tcp-proxy_swap_crc"
 startup: services
 init: false
 options:
-  server_host: "192.168.177.202"
-  server_port: 8899
+  server_host: "192.168.2.145"
+  server_port: 502
   server_timeout: 0.15
-  client_timeout: 0.25
+  client_timeout: 5
 schema:
   server_host: str
   server_port: int
