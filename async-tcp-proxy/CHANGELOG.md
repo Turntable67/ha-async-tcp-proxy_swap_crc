@@ -2,6 +2,7 @@
 
 | Version | Change                                              |
 | ------- | ----------------------------------------------------|
+| 0.0.9   | Reversed CRC
 | 0.0.8   | Fixed addon installation                            |
 | 0.0.7   | Additional logging of data in debug mode            |
 | 0.0.6   | Recover from remote server restart, improve logging |
