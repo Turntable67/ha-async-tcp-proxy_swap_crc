@@ -41,16 +41,15 @@ def close_remote_server_connection(log, reason):
     writer.close()
     return reader, writer
 
-# Source: https://github.com/ickerwx/tcpproxy/blob/master/proxymodules/hexdump.py
 def hex_dump(data, length=16):
-        result = []
-        digits = 2
-        for i in range(0, len(data), length):
-            s = data[i:i + length]
-            hexa = ' '.join(['%0*X' % (digits, x) for x in s])
-            text = ''.join([chr(x) if 0x20 <= x < 0x7F else '.' for x in s])
-            result.append("%04X   %-*s   %s" % (i, length * (digits + 1), hexa, text))
-        return "\n".join(result)
+    result = []
+    digits = 2
+    for i in range(0, len(data), length):
+        s = data[i:i + length]
+        hexa = ' '.join(['%0*X' % (digits, x) for x in s])
+        text = ''.join([chr(x) if 0x20 <= x < 0x7F else '.' for x in s])
+        result.append("%04X   %-*s   %s" % (i, length * (digits + 1), hexa, text))
+    return "\n".join(result)
 
 async def handle_client(reader, writer):
     try:
@@ -70,7 +69,6 @@ async def handle_client(reader, writer):
 
         # main client loop waiting to handle proxy communication for client
         while True:
-            # Wait MAX_CLIENT_TIMEOUT for client to request data from remote server
             client_in_session = False
             try:
                 data = await asyncio.wait_for(reader.read(BUFFER_SIZE), timeout=MAX_CLIENT_TIMEOUT)
@@ -91,7 +89,6 @@ async def handle_client(reader, writer):
 
             # Acquire the lock to ensure this client communicates to remote server exclusively
             async with remote_server_lock:
-                # Start client "session" with defined client_timeout
                 while True:
                     if client_in_session:
                         try:
@@ -112,13 +109,16 @@ async def handle_client(reader, writer):
                             return_reason = f'Error reading from client: {e}'
                             return
 
-                    # Client sesssion starts now and short client read timeout is used
+                    # Modify the data before sending to the remote server
+                    if len(data) >= 2:
+                        # Swap the last two bytes
+                        data = data[:-2] + data[-1:] + data[-2:-1]
+
                     client_in_session = True
                     try:
-                        # Forward data to remote server
                         _, remote_writer = await get_remote_server_connection(log)
                         remote_writer.write(data)
-                        log.debug(f'Sent {len(data)} bytes to remote server')
+                        log.debug(f'Sent {len(data)} bytes to remote server:\n{hex_dump(data)}')
                     except ConnectionError as e:
                         return_reason = f'Connection error writing to remote server: {e}'
                         log.error(return_reason)
@@ -131,7 +131,6 @@ async def handle_client(reader, writer):
                         return
 
                     try:
-                        # Read response from remote server
                         remote_reader, _ = await get_remote_server_connection(log)
                         response = await asyncio.wait_for(remote_reader.read(BUFFER_SIZE), timeout=args.server_timeout)
                         if not response:
@@ -140,12 +139,8 @@ async def handle_client(reader, writer):
                         if log.isEnabledFor(logging.DEBUG):
                             log.debug(f'Received {len(response)} bytes from remote server:\n{hex_dump(response)}')
                     except asyncio.TimeoutError:
-                        # Remote server didn't respond in time
-                        if log.isEnabledFor(logging.DEBUG):
-                            log.debug(f'No response from remote server for client request:\n{hex_dump(data)}')
                         timeout_count += 1
                         if timeout_count >= MAX_TIMEOUTS:
-                            # We've reached the maximum number of timeouts from server and close remote server connection
                             return_reason = f'For {timeout_count} times no data received from remote server'
                             close_remote_server_connection(log, return_reason)
                             return
@@ -162,7 +157,6 @@ async def handle_client(reader, writer):
                         return
 
                     try:
-                        # Send response to client
                         writer.write(response)
                         log.debug(f'Sent {len(response)} bytes to client')
                     except ConnectionError as e:
@@ -187,10 +181,8 @@ async def main():
     global args
     args = parser.parse_args()
 
-    # Initialize logging
     logging.basicConfig(level=args.loglevel.upper(), format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-    # Start proxy server
     try:
         server = await asyncio.start_server(handle_client, '0.0.0.0', args.port)
         async with server:
