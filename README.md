@@ -72,7 +72,7 @@ The default async-tcp-proxy addon configuration is based on my HA setup. The PE1
 ### PE11 TCP-Client on Deye inverter
 <details><summary>Serial Port Settings</summary>
 
-![image](https://github.com/cosote/ha-async-tcp-proxy/assets/15175818/c05aaf5c-7e95-454f-a45d-3aa20b280f53)
+![image]([https://github.com/cosote/ha-async-tcp-proxy/assets/15175818/c05aaf5c-7e95-454f-a45d-3aa20b280f53](https://github.com/Turntable67/ha-async-tcp-proxy_swap_crc/blob/main/2025-01-11%2010_44_59-Home%20Assistant.png))
 </details>
 
 <details><summary>Communication Settings</summary>
