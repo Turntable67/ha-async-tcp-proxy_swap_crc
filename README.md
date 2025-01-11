@@ -50,6 +50,8 @@ Modbus is now connecting to the ha-async-tcp-proxy_swap_crc and no longer to the
 modbus:
   - name: modbus_hub
     type: rtuovertcp
+# your home assistant ip
+    host: 127.0.0.1 
     port: 8899
     delay: 1
     message_wait_milliseconds: 50
@@ -63,7 +65,6 @@ modbus:
         scan_interval: 1
         input_type: holding
         data_type: uint16
-        swap: byte
         unit_of_measurement: V
         device_class: voltage
         state_class: measurement
