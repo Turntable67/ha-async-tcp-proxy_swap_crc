@@ -68,6 +68,8 @@ The default async-tcp-proxy addon configuration is based on my HA setup. The PE1
 ![image](https://github.com/cosote/ha-async-tcp-proxy/assets/15175818/3e5cdb1c-54b2-4d18-b2db-e333286f272f)
 </details>
 
+2025-01-11 10_44_59-Home Assistant.png
+
 <details><summary>Communication Settings</summary>
 
 ![image](https://github.com/cosote/ha-async-tcp-proxy/assets/15175818/a5470e26-da0e-4321-98bc-2b6013632bbe)
