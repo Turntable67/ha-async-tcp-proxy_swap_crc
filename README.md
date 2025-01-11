@@ -18,6 +18,8 @@ To solve this, I used this proxy as a bridge between the Elfin EW11 and the Modb
 
 This solution allows seamless integration of Marstek VENUS devices with Home Assistant using Modbus, overcoming the original limitation.
 
+When the issue with the swapped CRC is fixed by Marstek or when the pymodbud is able to invert the CRC bytes from the response (the request does not need the swap), this forked ha-async-tcp-proxy_swap_crc will no longer be nessecary.
+
 ## Installation
 
 You can install this add-on using the repository:
