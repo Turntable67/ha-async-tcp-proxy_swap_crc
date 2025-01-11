@@ -16,6 +16,8 @@ options:
   server_port: 502
   server_timeout: 0.15
   client_timeout: 5
+  loglevel: DEBUG
+  
 schema:
   server_host: str
   server_port: int
