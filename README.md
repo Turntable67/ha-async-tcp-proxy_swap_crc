@@ -6,7 +6,7 @@ The original add-on was created to address Modbus communication challenges betwe
 
 ## Why This Fork?
 
-When connecting a Marstek VENUS via RS485 to an Elfin EW11, I faced an issue where the response from the Marstek device had its last two bytes swapped. This caused Home Assistant's Modbus integration to reject the response. Unfortunately, the `pymodbus` library used in the integration does not provide an option to handle this byte-swap scenario.
+When connecting a Marstek VENUS via RS485 to an Elfin EW11, I faced an issue **where the response from the Marstek device had its last two bytes swapped**. This caused Home Assistant's Modbus integration to reject the response. Unfortunately, the `pymodbus` library used in the integration does not provide an option to handle this byte-swap scenario.
 
 To solve this, I used this proxy as a bridge between the Elfin EW11 and the Modbus integration in Home Assistant. This proxy intercepts the Marstek device's response and swaps the last two bytes before forwarding it to the Home Assistant Modbus integration.
 
