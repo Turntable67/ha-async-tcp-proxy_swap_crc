@@ -64,11 +64,11 @@ The default async-tcp-proxy addon configuration is based on my HA setup. The PE1
   
 ### PE11 TCP-Server on SDM630v2
 <details><summary>Serial Port Settings</summary>
-
+https://github.com/Turntable67/ha-async-tcp-proxy_swap_crc/blob/main/2025-01-11%2010_44_59-Home%20Assistant.png?raw=true
 ![image](https://github.com/cosote/ha-async-tcp-proxy/assets/15175818/3e5cdb1c-54b2-4d18-b2db-e333286f272f)
 </details>
 
-2025-01-11 10_44_59-Home Assistant.png
+https://github.com/Turntable67/ha-async-tcp-proxy_swap_crc/blob/main/2025-01-11%2010_44_59-Home%20Assistant.png
 
 <details><summary>Communication Settings</summary>
 
