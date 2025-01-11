@@ -33,6 +33,9 @@ You can install this add-on using the repository:
 - Configure the `client_timeout` and `server_timeout` settings as required. These settings control how the proxy handles simultaneous client connections and server response timeouts.
 - Enable the **DEBUG** log level for detailed packet communication and verification of byte-swapping (this can be switched to INFO when finished testing).
 
+### Configuration Tab
+![image](https://github.com/cosote/ha-async-tcp-proxy/assets/15175818/e08214b3-c4a1-4817-b4c4-21c351ac7f77)
+
 
 ### Example YAML Configuration for Home Assistant Modbus
 
