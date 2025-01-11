@@ -57,6 +57,10 @@ modbus:
 ## My configuration
 The default async-tcp-proxy addon configuration is based on my HA setup. The PE11 TCP-Server is running on IP 192.168.177.202:8899 and connected with 38400 baud, 8 data bit, 1 stop bit and none parity to my SDM630v2. This PE11 TCP-Server is configured behind the proxy.
 
+
+![image](https://github.com/Turntable67/ha-async-tcp-proxy_swap_crc/blob/main/2025-01-11%2010_44_59-Home%20Assistant)
+</details>
+
   
 ### PE11 TCP-Server on SDM630v2
 <details><summary>Serial Port Settings</summary>
