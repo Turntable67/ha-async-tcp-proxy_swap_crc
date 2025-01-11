@@ -31,7 +31,8 @@ You can install this add-on using the repository:
 
 - Set the `server_host` and `server_port` to the address and port of the TCP server behind the proxy (e.g., Elfin EW11).
 - Configure the `client_timeout` and `server_timeout` settings as required. These settings control how the proxy handles simultaneous client connections and server response timeouts.
-- Enable the **DEBUG** log level for detailed packet communication and verification of byte-swapping.
+- Enable the **DEBUG** log level for detailed packet communication and verification of byte-swapping (this can be switched to INFO when finished testing).
+
 
 ### Example YAML Configuration for Home Assistant Modbus
 
